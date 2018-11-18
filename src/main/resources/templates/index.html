@@ -107,7 +107,8 @@
             $("#tab-3").prop("checked", true);
         }
 
-        function login() {//登录
+        //登录
+        function login() {
             var username = $("#login-username").val(),
                 password = $("#login-password").val(),
                 validatecode = null,
@@ -153,6 +154,26 @@
                 return false;
             } else {//登录
                 //调用后台登录验证的方法
+
+                var json = {};
+                json.id = $("#login-username").val();
+                json.name = $("#login-password").val();
+
+                $.ajax({
+                    url: "/login/test",
+                    data: json,
+                    type: 'post',      //请求方式
+                    async: false,      //是否异步
+                    cache: false,      //是否使用缓存
+                    dataType: "json",  //返回数据的格式
+                    error: function () {
+                        alert('加载数据失败！');
+                    },
+                    success: function (data) {
+                        alert("加载数据成功");
+                    }
+                });
+
                 alert('登录成功');
                 return false;
             }
@@ -219,7 +240,7 @@
 
             //检查注册码是否正确
             //调后台方法检查注册码，这里写死为11111111
-            if (code != '11111111') {
+            if (code !== '11111111') {
                 $.pt({
                     target: $("#register-code"),
                     position: 'r',
@@ -243,7 +264,7 @@
                     onOpen: function () {
                         var second = 2;
                         var showPop = setInterval(function () {
-                            if (second == 0) {
+                            if (second === 0) {
                                 clearInterval(showPop);
                             }
                             $('.spop-body').html('<h4 class="spop-title">注册成功</h4>即将于' + second + '秒后返回登录');
@@ -266,7 +287,7 @@
                 flag = false,
                 validatecode = null;
             //判断用户名密码是否为空
-            if (username == "") {
+            if (username === "") {
                 $.pt({
                     target: $("#forget-username"),
                     position: 'r',
@@ -277,7 +298,7 @@
                 });
                 flag = true;
             }
-            if (password == "") {
+            if (password === "") {
                 $.pt({
                     target: $("#forget-password"),
                     position: 'r',
@@ -305,7 +326,7 @@
             //调后台方法
 
             //检查注册码是否正确
-            if (code != '11111111') {
+            if (code !== '11111111') {
                 $.pt({
                     target: $("#forget-code"),
                     position: 'r',
@@ -329,7 +350,7 @@
                     onOpen: function () {
                         var second = 2;
                         var showPop = setInterval(function () {
-                            if (second == 0) {
+                            if (second === 0) {
                                 clearInterval(showPop);
                             }
                             $('.spop-body').html('<h4 class="spop-title">重置密码成功</h4>即将于' + second + '秒后返回登录');
@@ -343,9 +364,8 @@
                 return false;
             }
         }
-
-
     </script>
+
     <style type="text/css">
         html {
             width: 100%;
@@ -399,6 +419,7 @@
                         <div class="arm arm-r"></div>
                     </div>
                 </div>
+
                 <div class="pad input-container">
                     <section class="content">
                         <a tabindex="5" class="btn btn-link text-muted" onClick="goto_register()">注册</a>
@@ -420,6 +441,7 @@
 							</span>
                     </section>
                 </div>
+
                 <div class="form-actions">
                     <a tabindex="4" class="btn pull-left btn-link text-muted" onClick="goto_forget()">忘记密码?</a>
                     <a tabindex="5" class="btn btn-link text-muted" onClick="login()">管理员登陆</a>
