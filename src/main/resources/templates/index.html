@@ -167,7 +167,7 @@
                 flag = false,
                 validatecode = null;
             //判断用户名密码是否为空
-            if (username == "") {
+            if (username === "") {
                 $.pt({
                     target: $("#register-username"),
                     position: 'r',
@@ -178,7 +178,7 @@
                 });
                 flag = true;
             }
-            if (password == "") {
+            if (password === "") {
                 $.pt({
                     target: $("#register-password"),
                     position: 'r',
@@ -189,7 +189,7 @@
                 });
                 flag = true;
             } else {
-                if (password != repassword) {
+                if (password !== repassword) {
                     $.pt({
                         target: $("#register-repassword"),
                         position: 'r',
