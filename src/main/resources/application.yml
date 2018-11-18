@@ -3,3 +3,8 @@ spring:
     cache: false
     prefix: classpath:/templates/
     suffix: .html
+
+  datasource:
+    url: jdbc:mysql://47.107.88.8:3306/device_manager?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&useSSL=false
+    username: keanu
+    password: admin

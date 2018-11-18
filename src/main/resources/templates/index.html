@@ -155,26 +155,29 @@
             } else {//登录
                 //调用后台登录验证的方法
 
-                var json = {};
-                json.id = $("#login-username").val();
-                json.name = $("#login-password").val();
-
+                // json.username = $("#login-username").val();
+                // json.password = $("#login-password").val();
                 $.ajax({
                     url: "/login/test",
-                    data: json,
-                    type: 'post',      //请求方式
+                    // data: json,
+                    data: JSON.stringify({
+                        username:$("#login-username").val(),
+                        password:$("#login-password").val()
+                    }),
+                    type: "post",      //请求方式
                     async: false,      //是否异步
                     cache: false,      //是否使用缓存
-                    dataType: "json",  //返回数据的格式
+                    // dataType: "json",  //返回数据的格式
+                    contentType: "application/json",
                     error: function () {
-                        alert('加载数据失败！');
+                        alert('登录失败！');
                     },
-                    success: function (data) {
-                        alert("加载数据成功");
+                    success: function () {
+                        alert("登陆成功！");
                     }
                 });
 
-                alert('登录成功');
+                // alert('登录成功');
                 return false;
             }
         }

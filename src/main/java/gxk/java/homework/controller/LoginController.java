@@ -17,6 +17,7 @@ public class LoginController {
 
     @PostMapping("/test")
     public String loginTest(@RequestBody User user){
-        return "redirect:management.html";
+        System.out.println(user.toString());
+        return "management";
     }
 }
