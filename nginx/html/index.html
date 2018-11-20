@@ -159,12 +159,12 @@
                 //调用后台登录验证的方法
 
                 $.ajax({
-                    url: "/homework/login/test",
+                    url: "/homework/login/test/crazy",
                     data: JSON.stringify({
                         username: $("#login-username").val(),
                         password: $("#login-password").val()
                     }),
-                    type: "post",      //请求方式
+                    method: "post",      //请求方式
                     async: false,      //是否异步
                     cache: false,      //是否使用缓存
                     // dataType:"json",  //返回数据的格式
