@@ -11,7 +11,7 @@
  Target Server Version : 50723
  File Encoding         : 65001
 
- Date: 20/11/2018 17:23:49
+ Date: 20/11/2018 21:19:55
 */
 
 SET NAMES utf8mb4;
@@ -22,7 +22,7 @@ SET FOREIGN_KEY_CHECKS = 0;
 -- ----------------------------
 DROP TABLE IF EXISTS `admin`;
 CREATE TABLE `admin`  (
-  `id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '主键',
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
   `admin_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '管理员id',
   `username` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '管理员用户名',
   `password` varchar(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '密码',
@@ -32,31 +32,31 @@ CREATE TABLE `admin`  (
   `update_time` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP(0),
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `idx_admin_id`(`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '管理员表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '管理员表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of admin
 -- ----------------------------
-INSERT INTO `admin` VALUES ('1', '201604006', '506873214', '123456', '郭效坤', 0, '2018-11-20 17:02:36', '2018-11-20 17:17:44');
-INSERT INTO `admin` VALUES ('2', '201604007', '964732261', '123456', '胡林', 0, '2018-11-20 17:18:01', '2018-11-20 17:18:01');
+INSERT INTO `admin` VALUES (1001, '201604006', '506873214', '123456', '郭效坤', 0, '2018-11-20 17:02:36', '2018-11-20 19:53:56');
+INSERT INTO `admin` VALUES (1002, '201604007', '964732261', '123456', '胡林', 0, '2018-11-20 17:18:01', '2018-11-20 19:54:04');
 
 -- ----------------------------
 -- Table structure for admin_role
 -- ----------------------------
 DROP TABLE IF EXISTS `admin_role`;
 CREATE TABLE `admin_role`  (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `admin_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '管理员id',
   `role_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '角色id',
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `idx_admin_role_id`(`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of admin_role
 -- ----------------------------
-INSERT INTO `admin_role` VALUES (1, '1', '1');
-INSERT INTO `admin_role` VALUES (2, '2', '2');
+INSERT INTO `admin_role` VALUES (1, '1001', '2001');
+INSERT INTO `admin_role` VALUES (2, '1002', '2002');
 
 -- ----------------------------
 -- Table structure for document
@@ -79,7 +79,7 @@ CREATE TABLE `document`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `permission`;
 CREATE TABLE `permission`  (
-  `id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `permission_resource` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `permission_name` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `permission_code` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
@@ -87,58 +87,58 @@ CREATE TABLE `permission`  (
   `update_time` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP(0),
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `idx_document_id`(`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '权限表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '权限表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of permission
 -- ----------------------------
-INSERT INTO `permission` VALUES ('1', '超级管理员', '查找', 'super:get', '2018-11-20 17:13:57', '2018-11-20 17:13:57');
-INSERT INTO `permission` VALUES ('2', '超级管理员', '删除', 'super:delete', '2018-11-20 17:14:12', '2018-11-20 17:14:12');
-INSERT INTO `permission` VALUES ('3', '超级管理员', '修改', 'super:update', '2018-11-20 17:14:32', '2018-11-20 17:14:32');
-INSERT INTO `permission` VALUES ('4', '超级管理员', '添加', 'super:add', '2018-11-20 17:14:49', '2018-11-20 17:14:49');
-INSERT INTO `permission` VALUES ('5', '管理员', '查找', 'admin:get', '2018-11-20 17:18:41', '2018-11-20 17:18:41');
+INSERT INTO `permission` VALUES (3001, '超级管理员', '查找', 'super:get', '2018-11-20 17:13:57', '2018-11-20 19:50:03');
+INSERT INTO `permission` VALUES (3002, '超级管理员', '删除', 'super:delete', '2018-11-20 17:14:12', '2018-11-20 19:50:15');
+INSERT INTO `permission` VALUES (3003, '超级管理员', '修改', 'super:update', '2018-11-20 17:14:32', '2018-11-20 19:50:22');
+INSERT INTO `permission` VALUES (3004, '超级管理员', '添加', 'super:add', '2018-11-20 17:14:49', '2018-11-20 19:50:25');
+INSERT INTO `permission` VALUES (3005, '管理员', '查找', 'admin:get', '2018-11-20 17:18:41', '2018-11-20 19:50:29');
 
 -- ----------------------------
 -- Table structure for role
 -- ----------------------------
 DROP TABLE IF EXISTS `role`;
 CREATE TABLE `role`  (
-  `id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `role_name` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '角色名称',
   `locked` tinyint(4) NOT NULL,
   `create_time` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `update_time` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP(0),
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `idx_role_id`(`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '角色表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '角色表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of role
 -- ----------------------------
-INSERT INTO `role` VALUES ('1', '超级管理员', 0, '2018-11-20 17:01:26', '2018-11-20 17:02:03');
-INSERT INTO `role` VALUES ('2', '管理员', 0, '2018-11-20 17:06:38', '2018-11-20 17:06:38');
-INSERT INTO `role` VALUES ('3', '学生', 0, '2018-11-20 17:21:21', '2018-11-20 17:21:21');
+INSERT INTO `role` VALUES (2001, '超级管理员', 0, '2018-11-20 17:01:26', '2018-11-20 19:47:47');
+INSERT INTO `role` VALUES (2002, '管理员', 0, '2018-11-20 17:06:38', '2018-11-20 19:47:57');
+INSERT INTO `role` VALUES (2003, '学生', 0, '2018-11-20 17:21:21', '2018-11-20 19:48:06');
 
 -- ----------------------------
 -- Table structure for role_permission
 -- ----------------------------
 DROP TABLE IF EXISTS `role_permission`;
 CREATE TABLE `role_permission`  (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `role_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '角色id',
   `permission_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '权限id',
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `idx_role_permission_id`(`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of role_permission
 -- ----------------------------
-INSERT INTO `role_permission` VALUES (1, '1', '1');
-INSERT INTO `role_permission` VALUES (2, '1', '2');
-INSERT INTO `role_permission` VALUES (3, '1', '3');
-INSERT INTO `role_permission` VALUES (4, '1', '4');
-INSERT INTO `role_permission` VALUES (5, '2', '5');
+INSERT INTO `role_permission` VALUES (1, '2001', '3001');
+INSERT INTO `role_permission` VALUES (2, '2001', '3002');
+INSERT INTO `role_permission` VALUES (3, '2001', '3003');
+INSERT INTO `role_permission` VALUES (4, '2001', '3004');
+INSERT INTO `role_permission` VALUES (5, '2002', '3005');
 
 -- ----------------------------
 -- Table structure for student
@@ -155,5 +155,10 @@ CREATE TABLE `student`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `idx_student_id`(`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '学生表' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of student
+-- ----------------------------
+INSERT INTO `student` VALUES ('1', '201803582', '123456', '蔡华庆', 0, '2018-11-20 19:32:34', '2018-11-20 19:32:34');
 
 SET FOREIGN_KEY_CHECKS = 1;
